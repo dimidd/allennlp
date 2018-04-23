@@ -1,0 +1,2 @@
+<orgName>U.N.</orgName> official <persName>Ekeus</persName> heads for <placeName>Baghdad</placeName>.
+<orgName>AI2</orgName> engineer <persName>Joel</persName> lives in <placeName>Seattle</placeName>. 
