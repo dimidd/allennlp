@@ -1,6 +1,7 @@
 import logging
 from typing import Dict, Iterable, List
 
+from allennlp.common import Params
 from allennlp.common.file_utils import cached_path
 from allennlp.data.dataset_readers.dataset_reader import DatasetReader
 from allennlp.data.dataset_readers.dataset_utils.tei import tei_to_iob
@@ -75,3 +76,9 @@ class TEITextDatasetReader(DatasetReader):
         return Instance(
             {"tokens": TextField(tokens, token_indexers=self._token_indexers)}
         )
+
+    @classmethod
+    def from_params(cls, params: Params) -> 'TEITextDatasetReader':
+        token_indexers = TokenIndexer.dict_from_params(params.pop('token_indexers', {"tokens": SingleIdTokenIndexer()}))
+        lazy = params.pop('lazy', False)
+        return TEITextDatasetReader(token_indexers=token_indexers, lazy=lazy)
